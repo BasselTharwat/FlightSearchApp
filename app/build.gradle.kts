@@ -85,5 +85,8 @@ dependencies {
     // JUnit
     testImplementation(libs.junit)
 
+    // Datastore
+    implementation(libs.androidx.datastore.preferences)
+
 
 }
