@@ -9,24 +9,23 @@ import com.example.flightsearchapp.data.local.entity.FavoriteEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao
-interface FlightsearchDAO {
+interface FlightSearchDAO {
 
     @Query("""
     SELECT * FROM airport
     WHERE iata_code LIKE '%' || :query || '%' OR name LIKE '%' || :query || '%'
     ORDER BY passengers DESC
 """)
-    suspend fun getSuggestions(query: String): Flow<List<AirportEntity>?>
-
+    fun getSuggestions(query: String): Flow<List<AirportEntity>>
 
     @Query("""
         SELECT * FROM airport
         WHERE iata_code != :departureCode
     """)
-    suspend fun getDestinationsFrom(departureCode: String): Flow<List<AirportEntity>?>
+    fun getDestinationsFrom(departureCode: String): Flow<List<AirportEntity>>
 
     @Query("SELECT * FROM favorite")
-    suspend fun getAllFavorites(): Flow<List<FavoriteEntity>?>
+    fun getAllFavorites(): Flow<List<FavoriteEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertFavorite(favorite: FavoriteEntity)

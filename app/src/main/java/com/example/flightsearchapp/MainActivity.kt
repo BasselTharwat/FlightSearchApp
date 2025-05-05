@@ -11,20 +11,26 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.flightsearchapp.ui.FlightSearchApp
 import com.example.flightsearchapp.ui.theme.FlightSearchAppTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             FlightSearchAppTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Text(
-                        text = "Hello, world!",
-                        modifier = Modifier.padding(innerPadding)
+                Scaffold {
+                    FlightSearchApp(
+                        modifier = Modifier.padding(it),
+                        viewModel = hiltViewModel()
                     )
                 }
+
+
             }
         }
     }

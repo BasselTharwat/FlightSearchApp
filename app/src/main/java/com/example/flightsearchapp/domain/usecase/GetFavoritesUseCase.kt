@@ -1,12 +1,12 @@
 package com.example.flightsearchapp.domain.usecase
 
 import com.example.flightsearchapp.data.local.entity.FavoriteEntity
-import com.example.flightsearchapp.domain.repository.FlightsearchRepository
+import com.example.flightsearchapp.domain.repository.FlightSearchRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class GetFavoritesUseCase @Inject constructor(
-    private val flightsearchRepository: FlightsearchRepository
+    private val flightSearchRepository: FlightSearchRepository
 ) {
-    suspend operator fun invoke(): Flow<List<FavoriteEntity>?> = flightsearchRepository.getAllFavorites()
+    operator fun invoke(): Flow<List<FavoriteEntity>> = flightSearchRepository.getAllFavorites()
 }
